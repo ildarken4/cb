@@ -1,0 +1,249 @@
+label {
+  font-family: 'Inter', serif;
+  display: flex;
+  align-items: flex-start;
+  font-weight: 500;
+  font-size: 14px;
+  cursor: pointer;
+
+  a {
+    text-decoration: underline;
+  }
+  &.text-14 {
+    align-items: center;
+  }
+}
+.form-row {
+  display: flex;
+
+  @include media-breakpoint-down(sm) {
+    display: block;
+  }
+}
+.form-input {
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  width: 100%;
+
+  input:not([type="checkbox"]):not([type="radio"]:not([type="range"])) {
+    font-family: 'Inter', serif;
+    font-size: 18px;
+    width: 100%;
+    height: 60px;
+    padding: 16px;
+    border-radius: 10px;
+    font-size: 14px;
+    background-color: $lightgrey;
+
+    &.verify-input {
+      height: 60px;
+      border-radius: 12px;
+      max-width: 188px;
+      font-size: 21px;
+      line-height: 27.3px;
+      font-weight: 700;
+    }
+
+    
+  }
+
+  &.required {
+    position: relative;
+
+    &::after {
+      content: '*';
+      display: block;
+      position: absolute;
+      top: 0;
+      right: -2px;
+      width: 11px;
+      height: 21px;
+      // color: $text-red;
+      font-size: 21px;
+      line-height: 25.2px;
+      font-weight: 500;
+    }
+  }
+}
+
+.form-btns {
+  .btn {
+    width: 100%;
+  }
+}
+/* Кастомный input[type="checkbox"] */
+
+input[type="checkbox"],
+input[type="radio"] {
+  display: none;
+}
+
+.custom-checkbox {
+  display: inline-block;
+  position: relative;
+  top: -4px;
+  cursor: pointer;
+}
+
+.custom-checkbox::before {
+  content: '';
+  position: relative;
+  top: 0;
+  display: inline-block;
+  background-image: url('../images/icons/checkbox_big_empty.svg');
+  width: 28px;
+  height: 28px;
+  border-radius: 3px;
+  margin-right: 6px;
+  transition: all $transition_04;
+}
+
+.custom-checkbox::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-image: url('../images/icons/checkbox_big_checked.svg');
+  width: 28px;
+  height: 28px;
+  visibility: hidden;
+}
+
+input[type="checkbox"]:checked + .custom-checkbox::after {
+  visibility: visible;
+}
+
+/* Кастомный input[type="radio"] */
+.custom-radio {
+  display: inline-block;
+  position: relative;
+  cursor: pointer;
+}
+
+.custom-radio::before {
+  content: '';
+  position: relative;
+  top: 4px;
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border-radius: 3px;
+  margin-right: 4px;
+  // border: 2px solid $darkgrey;
+  border-radius: 50%;
+}
+
+.custom-radio::after {
+  content: '';
+  position: absolute;
+  top: 9px;
+  left: 5px;
+  // background-color: $green;
+  border-radius: 50%;
+  width: 10px;
+  height: 10px;
+  visibility: hidden;
+}
+
+input[type="radio"]:checked {
+  & + .custom-radio::after {
+    visibility: visible;
+  }
+}
+
+.passport-code {
+  width: calc(50% - 15px);
+  @include media-breakpoint-down(sm) {
+    width: 100%;
+  }
+}
+
+.short-field {
+  max-width: 145px;
+}
+
+.account-body__card {
+  input[type="text"] {
+    width: 100%;
+    height: 70px;
+    padding: 10px;
+    border-radius: 10px;
+    border: 1px solid var(---Dark_Gray, #A3A3A3);
+    font-family: 'Inter';
+    font-size: 40px;
+    font-style: normal;
+    font-weight: 600;
+    text-align: center;
+    color: $text-black;
+
+    @include media-breakpoint-down(lg) {
+      height: 50px;
+      padding: 10px;
+      font-size: 24px;
+    }
+  }
+}
+
+
+// чекбокс - switch
+
+.checkbox-switch {
+	display: flex;
+  align-items: center; 
+	line-height: 21.6px;
+	position: relative;
+	font-size: 18px;
+	user-select: none;	
+  @include media-breakpoint-down(md) {
+    font-size: 16px;
+    line-height: 19.2px;
+  }
+}
+.checkbox-switch .checkbox-switch-mask {
+	position: relative;	
+	display: inline-block;
+	box-sizing: border-box;			
+	width: 40px;	
+	height: 21px;
+	border-radius: 25%/50%;	
+	vertical-align: top;
+	background: $darkgrey;
+	transition: all $transition_04;
+}
+.checkbox-switch .checkbox-switch-mask:before {
+	content: '';
+	position: absolute;
+	top: 1px;
+	left: 1px;	
+	display: inline-block;
+	width: 19px;	
+	height: 19px;
+	border-radius: 50%;
+	background: white;
+	transition: all $transition_04;
+}
+.checkbox-switch input[type=checkbox] {
+	display: block;	
+	width: 0;
+	height: 0;	
+	position: absolute;
+	z-index: -1;
+	opacity: 0;
+}
+.checkbox-switch input[type=checkbox]:checked + .checkbox-switch-mask {
+	background: $ruby;
+}
+.checkbox-switch input[type=checkbox]:checked + .checkbox-switch-mask:before {
+	transform:translateX(19px);
+}
+ 
+/* Hover */
+.checkbox-switch input[type="checkbox"] + .checkbox-switch-mask {
+	cursor: pointer;
+}
+ 
+/* Focus */
+.checkbox-switch.focused .checkbox-switch-mask:before {
+	box-shadow: inset 0px 0px 4px #ff5623;
+}

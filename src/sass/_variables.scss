@@ -1,0 +1,36 @@
+// Theme colors
+$white: rgba(255, 255, 255, 1);
+$text-black: rgba(21, 21, 21, 1);
+$black_02: rgba(0, 0, 0, 0.2);
+
+$text-red: rgba(255, 0, 0, 1);
+$bg-red: #DD2525;
+
+$darkruby: rgba(82, 17, 36, 1);
+$ruby: rgba(205, 39, 89, 1);
+
+$darkgrey: #A3A3A3;
+$grey_015: rgba(163, 163, 163, 0.15);
+$grey: rgba(163, 163, 163, 1);
+$lightgrey: rgba(245, 245, 245, 1);
+
+$green: rgba(107, 211, 144, 1);
+
+// Transitions
+$transition_04: 0.4s ease; 
+
+// Grid
+$grid-gutter-width: 24px;
+$container-max-widths: (
+        md: 991px,
+        lg: 1500px,
+
+);
+$grid-breakpoints: (
+        xs: 0,
+        sm: 576px,
+        md: 768px,
+        lg: 992px,
+        xl: 1280px,
+        xxl: 1500px
+);

@@ -1,0 +1,103 @@
+.btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding: 0 30px;
+    height: 70px;
+    border-radius: 10px;
+    font-family: 'Sansation', serif;
+    font-size: 22px;
+    text-transform: uppercase;
+    line-height: 22px;
+    font-weight: 700;
+    text-align: center;
+    transition: all $transition_04;
+    background-color: $ruby;
+    color: $white;
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    @include media-breakpoint-down(md) {
+        height: 50px;
+    }
+
+    &:hover {
+        filter: brightness(105%);
+    }
+
+    img {
+        margin-left: 6px;
+    }
+
+    &-disabled {
+        opacity: .5;
+        pointer-events: none;
+    }
+
+    &-rounded {
+        font-size: 14px;
+        line-height: 14px;
+        height: 44px;
+        border-radius: 50px;
+    }
+
+    &-transparent {
+        background-color: transparent;
+        color: $ruby;
+        border: 2px solid $ruby;
+        svg {
+            path {
+                transition: all $transition_04;
+            }
+        }
+        &:hover {
+            color: $darkruby;
+            border-color: $darkruby;
+
+            svg {
+                path {
+                    stroke: $darkruby;
+                }
+            }
+        }
+    }
+    &-small {
+        height: 60px;
+        width: 282px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: 'Inter';
+        font-size: 20px;
+        font-weight: 600;
+        text-transform: none;
+
+        svg {
+            margin-left: 5px;
+        }
+    }
+    &.bg-lightgrey {
+        background-color: $lightgrey;
+        color: $text-black;
+        transition: all $transition_04;
+        svg path {
+            transition: all $transition_04;
+        }
+        &:hover {
+            color: $ruby;
+            svg path {
+                fill: $ruby;
+            }
+        }
+    }
+    &.bg-green {
+        color: $white;
+
+        &:hover {
+            // background-color: $darkgreen;
+        }
+    }
+}

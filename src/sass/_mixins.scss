@@ -1,0 +1,81 @@
+$space_amounts: (0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75, 80, 85, 90, 95, 100, 150);
+
+$sides: (
+        "": "all",
+        "t": "top",
+        "b": "bottom",
+        "l": "left",
+        "r": "right",
+);
+
+@each $space in $space_amounts {
+  @each $prefix, $value in $sides {
+    $property: if($prefix == '', '', -#{$value});
+    .m#{$prefix}-#{$space} {
+      margin#{$property}: #{$space}px !important;
+    }
+    .p#{$prefix}-#{$space} {
+      padding#{$property}: #{$space}px !important;
+    }
+  }
+}
+
+@include media-breakpoint-down(lg) {
+  @each $space in $space_amounts {
+    @each $prefix, $value in $sides {
+      $property: if($prefix == '', '', -#{$value});
+      .m#{$prefix}-md-#{$space} {
+        margin#{$property}: #{$space}px !important;
+      }
+      .p#{$prefix}-md-#{$space} {
+        padding#{$property}: #{$space}px !important;
+      }
+    }
+  }
+}
+
+@include media-breakpoint-down(sm) {
+  @each $space in $space_amounts {
+    @each $prefix, $value in $sides {
+      $property: if($prefix == '', '', -#{$value});
+      .m#{$prefix}-sm-#{$space} {
+        margin#{$property}: #{$space}px !important;
+      }
+      .p#{$prefix}-sm-#{$space} {
+        padding#{$property}: #{$space}px !important;
+      }
+    }
+  }
+}
+
+@each $space in $space_amounts {
+  .gap-#{$space} {
+    gap: #{$space}px;
+  }
+}
+
+@include media-breakpoint-down(lg) {
+  @each $space in $space_amounts {
+    .gap-lg-#{$space} {
+      gap: #{$space}px;
+    }
+  }
+}
+
+@include media-breakpoint-down(md) {
+  @each $space in $space_amounts {
+    .gap-md-#{$space} {
+      gap: #{$space}px;
+    }
+  }
+}
+
+
+@include media-breakpoint-down(sm) {
+  @each $space in $space_amounts {
+    .gap-sm-#{$space} {
+      gap: #{$space}px;
+    }
+  }
+}
+

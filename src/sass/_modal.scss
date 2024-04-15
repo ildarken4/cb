@@ -1,0 +1,107 @@
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100vw;
+    height: 100vh;
+    background-color: $black_02; 
+    z-index: 2500;
+    backdrop-filter: blur(5px);
+    pointer-events: none;
+    opacity: 0;
+    -webkit-backdrop-filter: blur(5px);
+    transition: all $transition_04;
+
+    @include media-breakpoint-down(sm) {
+        align-items: flex-start;
+    }
+
+    &.active {
+        opacity: 1;
+        pointer-events: all;
+    }
+    
+    .popup {
+        padding: 40px;
+        background-color: $white;
+        border-radius: 20px;
+        max-height: 80vh;
+        overflow-y: scroll;
+        width: 1000px;
+
+        @include media-breakpoint-down(md) {
+            position: absolute;
+            bottom: 0;
+            border-radius: 20px 20px 0 0;
+            width: 100vw;
+            padding: 20px;
+        }
+        &__top {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            @include media-breakpoint-down(md) {
+                justify-content: center;
+                padding-bottom: 22px;
+                border-bottom: 1px solid $grey;
+            }
+
+            .btn {
+                width: 140px;
+                margin-right: 0;
+            }
+            .close-popup {
+                position: absolute;
+                top: 20px;
+                right: 20px;
+                transform: rotate(45deg);
+            }
+        }
+
+        &__title {
+            color: $ruby;
+            text-transform: uppercase;
+            font-size: 20px;
+            font-weight: bold;
+            @include media-breakpoint-down(md) {
+                font-size: 16px;
+                line-height: 19px;
+                color: $black;
+                text-transform: none;
+            }
+        }
+
+        &__content {
+            font-size: 20px;
+            line-height: 26px;
+            @include media-breakpoint-down(md) {
+                font-size: 16px;
+                line-height: 18px;
+                color: $grey;
+            }
+        }
+        &-small {
+            width: 100%;
+            max-width: 444px;
+        }
+        .close-button {
+            svg {
+                cursor: pointer;
+                
+                path {
+                    transition: all $transition_04;
+                }
+            }
+
+            &:hover {
+                svg path {
+                  //  fill: $green;
+                }
+            }
+        }
+    }
+}

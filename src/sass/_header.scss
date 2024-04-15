@@ -1,0 +1,216 @@
+.header {
+  width: 100%;
+  position: relative;
+  padding-top: 20px;
+  text-transform: uppercase;
+  font-size: 12px;
+  line-height: 12px;
+
+  &-content {
+    width: 100%;
+    padding: 15px 20px;
+    background-color: $lightgrey;
+    border-radius: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+  .mob-login-btn {
+    display: none;
+  }
+  
+  @media (max-width:1120px) {
+    .login-btn {
+      display: none;
+    }
+    .mob-login-btn {
+      display: block;
+    }
+  }
+  
+
+  nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-grow: .5;
+
+    @include media-breakpoint-down(lg) {
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+      .login-btn {
+        display: block;
+      }
+      .header__buttons {
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+        .btn {
+          width: 280px;
+          margin-bottom: 20px;
+        }
+      }
+    }
+
+    ul li:not(:first-child) {
+      margin-left: 20px;
+      
+      @include media-breakpoint-down(lg) {
+        margin-left: 0;
+      }
+    }
+    a {
+      color: $text-black;
+      display: flex;
+      align-items: center;
+      font-size: 12px;
+      text-transform: uppercase;
+      font-weight: 600;
+      transition: color $transition_04;
+    }
+
+    @include media-breakpoint-down(lg) {
+      position: fixed;
+      height: 100vh;
+      width: 100vw;
+      top: -105vh;
+      left: 0;
+      opacity: 0;
+      background-color: $lightgrey;
+      color: $ruby;
+      font-weight: bold;
+      z-index: 2000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.6s ease;
+
+      ul {
+        flex-direction: column;
+        li {
+          margin-bottom: 20px;
+          &:not(:last-child) {
+            margin-right: 0;
+          }
+          a {
+            font-size: 20px;
+            line-height: 24px;
+            font-weight: 400;
+            color: $text-black;
+            @include media-breakpoint-down(sm) {
+              font-size: 17px;
+            }
+            svg path {
+              fill: $white;
+            }
+
+            &:hover {
+              // color: $lightgreen;
+      
+              svg path {
+                // fill: $lightgreen;
+              }
+            }
+          }
+        }
+      }
+      &.opened {
+        opacity: 1;
+        top: 0;
+        transition: all 0.6s ease;
+      }
+    }
+    
+  }
+  &__contacts {
+    text-align: right;
+
+    a {
+      font-weight: 700;
+      line-height: 16px;
+      color: $text-black;
+    }
+
+    @media(max-width:1280px) {
+      display: none;
+    }
+    @include media-breakpoint-down(lg) {
+      display: block;
+      margin-bottom: 120px;
+      &>div {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-bottom: 5px;
+      }
+      a {
+        font-size: 20px !important;
+      }
+    }
+  }
+  &__buttons {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .btn {
+    width: fit-content;
+    margin: 0;
+  }
+  @include media-breakpoint-down(lg) {
+    .logo {
+      max-width: 105px;
+    }
+    .logout-btn {
+      span {
+        display: none;
+      }
+    }
+  }
+
+  &-account {
+    background-color: $white;
+    border-bottom: 1px solid $darkgrey;
+    padding: 0;
+
+    .header-content {
+      background-color: transparent;
+      padding-left: 0;
+      padding-right: 0;
+    }
+    .header__nav {
+      justify-content: flex-end;
+    }
+  }
+}
+
+.mob-nav-toggler {
+  position: relative;
+  z-index: 2100;
+  &__line {
+    height: 2px;
+    width: 20px;
+    background-color: $ruby;
+    transition: all $transition_04;
+
+    &:not(:last-child) {
+      margin-bottom: 3px;
+    }
+  }
+  &.active {
+    .mob-nav-toggler__line {
+      margin: 0;
+      &:first-child {
+        transform: rotate(-45deg) translateY(2px);
+      }
+      &:last-child {
+        transform: rotate(45deg) translateY(-1.5px);
+      }
+      &:nth-child(2) {
+        max-height: 0;
+      }
+    }
+  }
+}
