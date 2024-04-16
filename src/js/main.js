@@ -556,41 +556,33 @@ if (accountSlider) {
 
 // переключение вкладок c инфой на главной
 
-// Получаем все элементы .nav-link
+const tabsContainers = document.querySelectorAll('.tabs');
+
 var navLinks = document.querySelectorAll('.tabs .nav-tabs .nav-link');
 
-if (navLinks) {
-    // Добавляем обработчик события click к каждому .nav-link
-    navLinks.forEach(function (navLink) {
-        navLink.addEventListener('click', function (event) {
-            event.preventDefault(); // Предотвращаем стандартное поведение ссылки
+if (tabsContainers) {
 
-            // Удаляем класс 'active' у всех .nav-link
-            navLinks.forEach(function (link) {
-                link.classList.remove('active');
-            });
-
-            // Добавляем класс 'active' к текущему .nav-link
-            navLink.classList.add('active');
-
-            // Получаем значение id текущего .nav-link
-            var targetId = navLink.getAttribute('id');
-
-            // Получаем все элементы .tab-pane
-            var tabPanes = document.querySelectorAll('.tabs .tab-content .tab-pane');
-
-            // Проходимся по всем .tab-pane и удаляем у них класс 'active'
-            tabPanes.forEach(function (tabPane) {
-                tabPane.classList.remove('active');
-
-                // Получаем значение атрибута aria-labelledby у текущего .tab-pane
-                var ariaLabelledBy = tabPane.getAttribute('aria-labelledby');
-
-                // Если значение атрибута aria-labelledby совпадает с targetId, добавляем класс 'active'
-                if (ariaLabelledBy === targetId) {
-                    tabPane.classList.add('active');
-                }
+    tabsContainers.forEach(function(tabsContainer) {
+        var navLinks = tabsContainer.querySelectorAll('.nav-tabs .nav-link');
+        navLinks.forEach(function (navLink) {
+            navLink.addEventListener('click', function (event) {
+                event.preventDefault(); 
+                
+                navLinks.forEach(function (link) {
+                    link.classList.remove('active');
+                });
+                navLink.classList.add('active');
+                var targetId = navLink.getAttribute('id');
+                var tabPanes = tabsContainer.querySelectorAll('.tab-content .tab-pane');
+                tabPanes.forEach(function (tabPane) {
+                    tabPane.classList.remove('active');
+                    var ariaLabelledBy = tabPane.getAttribute('aria-labelledby');
+                    if (ariaLabelledBy === targetId) {
+                        tabPane.classList.add('active');
+                    }
+                });
             });
         });
-    });
+    })
+    
 }
