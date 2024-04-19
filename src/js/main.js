@@ -28,6 +28,22 @@ function enableBodyScroll() {
         scrollPosition = undefined;
     }
 }
+// Клик вне .popup
+document.addEventListener('mouseup', function (e) {
+    const popups = document.querySelectorAll('.popup');
+
+    popups.forEach(popup => {
+        const modal = popup.closest('.modal'); // Получаем ближайший родитель .modal для текущего .popup
+
+        // Проверяем наличие .active у родителя .modal
+        if (modal && modal.classList.contains('active')) {
+            if (!popup.contains(e.target)) {
+                closeModal();
+            }
+        }
+    });
+});
+
 
 // Открыть модальное окно
 function openModal(modalName) {
@@ -35,12 +51,7 @@ function openModal(modalName) {
     modal.classList.add("active");
     disableBodyScroll();
 
-    // Клик вне .popup
-    document.addEventListener('mouseup', function (e) {
-        if (!popup.contains(e.target)) {
-            closeModal()
-        }
-    });
+    
 }
 
 // Переключить модальное окно
@@ -50,12 +61,7 @@ function changeModal(modal1, modal2) {
     let closingModal = document.getElementById(modal1);
     openingModal.classList.add("active");
     closingModal.classList.remove("active");
-    // Клик вне .popup
-    document.addEventListener('mouseup', function (e) {
-        if (!popup.contains(e.target)) {
-            closeModal()
-        }
-    });
+
 }
 
 // Закрыть модальное окно
@@ -536,22 +542,49 @@ if (customSelects) {
 }
 
 const accountSlider = document.querySelector('.account-slider');
+const accountSliderMob = document.querySelector('.account-slider-mob');
 
 if (accountSlider) {
     const accountSwiper = new Swiper('.account-slider', {
-
-        // If we need pagination
-        pagination: {
-            el: '.swiper-pagination',
-        },
-
+        spaceBetween: 30,
         // Navigation arrows
         navigation: {
             nextEl: '.slider-next',
             prevEl: '.slider-prev',
-        }
+        },
+
+        pagination: {
+            el: '.slider-counter',
+            type: 'fraction',
+            renderFraction: function (currentClass, totalClass) {
+                return '<div class="current-slide ' + currentClass + '"></div>' +
+                    ' <div class="line"></div> ' +
+                    '<div class=" total-slide ' + totalClass + '"></div>';
+            },
+        },
     });
 }
+
+if (accountSliderMob) {
+    const accountSwiperMob = new Swiper('.account-slider-mob', {
+        spaceBetween: 30,
+        // Navigation arrows
+        navigation: {
+            nextEl: '.slider-next-mob',
+            prevEl: '.slider-prev-mob',
+        },
+        pagination: {
+            el: '.slider-counter',
+            type: 'fraction',
+            renderFraction: function (currentClass, totalClass) {
+                return '<div class="current-slide ' + currentClass + '"></div>' +
+                    ' <div class="line"></div> ' +
+                    '<div class=" total-slide ' + totalClass + '"></div>';
+            },
+        },
+    });
+}
+
 
 
 // переключение вкладок c инфой на главной
@@ -584,5 +617,179 @@ if (tabsContainers) {
             });
         });
     })
-    
 }
+
+
+// Открытие графика платежей
+
+const scheduleButton = document.querySelector('.schedule-btn');
+const scheduleModal = document.querySelector('.schedule-modal');
+const scheduleClose = document.querySelector('.schedule-close');
+
+if(scheduleButton) {
+    scheduleButton.addEventListener('click', function () {
+        scheduleModal.classList.add('active');
+    });
+    scheduleClose.addEventListener('click', function () {
+        scheduleModal.classList.remove('active');
+    })
+}
+
+
+let timer;
+
+function startEmailTimer() {
+    clearInterval(timer); // Остановка предыдущего таймера, если он существует
+
+    let seconds = 59;
+    const button = document.querySelector('.popup-email-button');
+    button.classList.add('btn-disabled');
+    // Функция обновления таймера
+    function updateTimer() {
+        const timerElement = document.querySelector('.popup-timer');
+        
+
+        if (seconds >= 0) {
+            const secondsText = getSecondsText(seconds);
+            timerElement.textContent = seconds + ' ' + secondsText;
+            seconds--;
+        } else {
+            clearInterval(timer);
+            button.classList.remove('btn-disabled');
+        }
+    }
+
+    updateTimer();
+
+    timer = setInterval(updateTimer, 1000);
+}
+
+
+// Функция определения правильного окончания для слова "секунда"
+function getSecondsText(seconds) {
+    if (seconds === 1 || (seconds > 20 && seconds % 10 === 1)) {
+        return 'секунда';
+    } else if ((seconds >= 2 && seconds <= 4) || (seconds > 20 && seconds % 10 >= 2 && seconds % 10 <= 4)) {
+        return 'секунды';
+    } else {
+        return 'секунд';
+    }
+}
+
+// Обработчик клика по кнопке
+
+const popupEmailButton = document.querySelector('.popup-email-button');
+
+if (popupEmailButton) {
+    popupEmailButton.addEventListener('click', function () {
+        if (!this.classList.contains('btn-disabled')) {
+            this.classList.add('btn-disabled');
+            startEmailTimer();
+        }
+    });
+}
+
+
+const hintedInputs = document.querySelectorAll('.js-hinted-input');
+
+if(hintedInputs) {
+
+    hintedInputs.forEach(function(hintedInput) {
+        var input = hintedInput.querySelector('input');
+        var inputHint = hintedInput.querySelector('.input-hint');
+
+        input.addEventListener('focus', function() {
+            inputHint.classList.add('active');
+        });
+
+        input.addEventListener('blur', function() {
+            inputHint.classList.remove('active');
+        });
+    });
+
+}
+
+// Показ/скрытие поля password
+
+let formInputs = document.querySelectorAll('.form-input');
+
+if(formInputs) {
+    formInputs.forEach(function(formInput) {
+        var showPassword = formInput.querySelector('.show-password'); 
+        var input = formInput.querySelector('input[type="password"]');
+
+        showPassword.addEventListener('click', function() {
+            if (input.type === 'password') {
+                input.type = 'text';
+            } else {
+                input.type = 'password';
+            }
+        });
+    });
+}
+
+// Проверка соответствия паролей и отправка данных
+
+
+// Находим элементы и блоки на странице
+    const newPassword = document.getElementById('new-password');
+    const confirmPassword = document.getElementById('confirm-password');
+    const popupPasswordButton = document.querySelector('.popup-password-button');
+    const inputErrors = document.querySelectorAll('.input-error');
+
+    if(newPassword) {
+    // Функция для проверки заполненности полей
+        function checkFields() {
+            if (newPassword.value && confirmPassword.value) {
+                popupPasswordButton.classList.remove('btn-disabled');
+            } else {
+                popupPasswordButton.classList.add('btn-disabled');
+            }
+        }
+
+        // Функция для проверки совпадения паролей
+        function checkPasswords() {
+            if (newPassword.value !== confirmPassword.value) {
+                newPassword.classList.add('error');
+                confirmPassword.classList.add('error');
+                inputErrors.forEach(function(error) {
+                    error.classList.add('active');
+                });
+            } else {
+                newPassword.classList.remove('error');
+                confirmPassword.classList.remove('error');
+                newPassword.value = '';
+                confirmPassword.value = '';
+                inputErrors.forEach(function(error) {
+                    error.classList.remove('active');
+                });
+                changeModal('set-password-modal', 'password-success-modal')
+            }
+        }
+
+        // Обработчики событий для полей паролей и кнопки
+        newPassword.addEventListener('input', checkFields);
+        confirmPassword.addEventListener('input', checkFields);
+        popupPasswordButton.addEventListener('click', function(event) {
+            event.preventDefault(); // Отменяем стандартное поведение кнопки
+            checkPasswords(); // Проверяем совпадение паролей
+        });
+
+
+        // Проверка пароля на наличие латинских букв и цифр
+
+        function checkPasswordOnBlur() {
+            var password = newPassword.value;
+            
+            var regex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
+            
+            if (regex.test(password)) {
+                newPassword.classList.remove('error');
+            } else {
+                newPassword.classList.add('error');
+            }
+        }
+
+        newPassword.addEventListener('blur', checkPasswordOnBlur);
+    }
+    

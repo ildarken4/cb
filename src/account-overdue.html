@@ -11,7 +11,7 @@
 <div class="wrapper account-wrapper">
     <div class="container pt-60 pt-md-40">
         <div class="account-top">
-            <div class="mb-10 account-top__greeting">Добро пожаловать, <strong class="username text-black">Иванов Иван Ильдарович</strong></div>
+            <div class="mb-10 account-top__greeting">Добро пожаловать, <strong class="username text-black">Иванов Иван Иванович</strong></div>
             <div class="account-top__title mb-20">У вас есть активный заем</div>
             <div class="account-top__overdue mb-20">Платеж просрочен на <span>19</span> дней</div>
             <div class="account-top__buttons">
@@ -30,10 +30,10 @@
             </div>
         </div>
 
-        <div class="account-body same-cards pt-20 mb-60">
+        <div class="account-body pt-20 mb-60">
             <div class="row mob-reverse p-0">
                 <div class="col-lg-6 col-md-6 pl-0 pr-md-10 pr-sm-0">
-                    <div class="account-body__card same-item loan-info">
+                    <div class="account-body__card loan-info">
                         <div class="loan-info__item">
                             <div class="info-title">Номер договора</div>
                             <div class="info-data">№<span>12435445</span></div>
@@ -53,16 +53,16 @@
                     </div>
                 </div>
                 <div class="col-lg-6 col-md-6 pr-0 pl-md-10 pl-sm-0">
-                    <div class="account-body__card same-item d-flex flex-column align-items-center justify-content-center">
+                    <div class="account-body__card d-flex flex-column align-items-center justify-content-center">
                         <form action="" class="payment-form">
                             <input type="text" class="mb-10 account-pay" placeholder="Введите сумму">
                             <button class="btn mb-30">Оплатить</button>
-                            <a href="#" class="text-ruby account-body__link">
+                            <div class="text-ruby account-body__link schedule-btn">
                                 График платежей
                                 <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25" fill="none">
                                     <path d="M4.5 20.5L20.5 4.5M20.5 4.5V20.5M20.5 4.5H4.5" stroke="#CD2759" stroke-width="2"/>
                                 </svg>
-                            </a>
+                            </div>
 
                         </form>
                     </div>
@@ -72,6 +72,8 @@
 
         <partial src="account-menu.html"></partial>
     </div>
+
+    <partial src="schedule-modal.html"></partial>
 </div>
 
 

@@ -3,6 +3,9 @@
     height: 100%;
     min-height: 100vh;
     padding-bottom: 60px;
+    @include media-breakpoint-up(md) {
+        position: relative;
+    }
 }
 .account-top {
     font-family: 'Sansation', serif;
@@ -13,6 +16,7 @@
     font-size: 32px;
     font-weight: 700;
     color: $darkgrey;
+    margin-bottom: 20px;
 
     &__title {
         font-weight: 700;
@@ -110,12 +114,15 @@
         padding: 40px 60px;
         border-radius: 10px;
         box-shadow: 0px 4px 10px 0px rgba(204, 204, 204, 0.50);
+        min-height: 390px;
 
         @include media-breakpoint-down(lg) {
             margin-bottom: 20px;
             padding: 30px 10px;
         }
-
+        @include media-breakpoint-down(md) {
+            min-height: auto;
+        }
         &.loan-info {
             .loan-info__item {
                 display: flex;
@@ -281,12 +288,13 @@
         align-items: center;
         max-width: 280px;
     }
-    a.account-body__link {
+    .account-body__link {
         font-family: 'Inter';
         font-size: 24px;
         font-style: normal;
         font-weight: 600;
         transition: all $transition_04;
+        cursor: pointer;
 
         @include media-breakpoint-down(lg) {
             font-size: 18px;
@@ -361,6 +369,8 @@
         }
         @include media-breakpoint-down(md) {
             align-self: flex-start;
+            font-size: 18px;
+            line-height: 18px;
 
             svg {
                 display: none;
@@ -379,7 +389,7 @@
     }
 }
 
-.account-body {
+.account-content {
     border-radius: 10px;
     background: $white;
     box-shadow: 0px 4px 10px 0px rgba(204, 204, 204, 0.50);
@@ -522,35 +532,6 @@
     
 }
 
-.slider-group {
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    flex-wrap: nowrap;
-    padding: 10px;
-
-    .slider-item {
-        width: calc(50% - 15px);
-        @include media-breakpoint-down(md) {
-            width: 100%;
-        }
-    }
-}
-
-.swiper-slide {
-    flex: none;
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    flex-wrap: wrap;
-    gap: 30px;
-
-    @include media-breakpoint-down(md) {
-        flex-direction: column;
-    }
-}
-
 .slider-button.disabled {
     opacity: .4;
     pointer-events: none;
@@ -558,14 +539,14 @@
 .history-cards-list {
     max-width: 1200px;
     overflow: hidden;
-    padding-bottom: 50px;
+    padding: 10px;
     .history-card {
         padding: 20px 40px;
         border-radius: 20px;
         background: $white;
         box-shadow: 0px 4px 10px 0px rgba(204, 204, 204, 0.50);
         width: calc(50% - 15px);
-        @include media-breakpoint-down(md) {
+        @include media-breakpoint-down(lg) {
             width: 100%;
         }
 
@@ -618,14 +599,37 @@
     }
 }
 
+
+.swiper-container {
+    overflow: hidden;
+    .swiper-wrapper {
+        height: fit-content;
+        width: fit-content;
+    }
+}
+
+.swiper-slide {
+    flex: none;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    gap: 30px;
+
+    @include media-breakpoint-down(md) {
+        flex-direction: column;
+    }
+}
 .slider-controls {
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 30px;
+    margin-top: 40px;
 
-    .slider-prev,
-    .slider-next {
+    .slider-button {
         padding: 0;
     }
 
@@ -655,11 +659,17 @@
     max-width: 1200px;
     border-top: 1px solid $darkgrey;
 
+    .swiper-slide {
+        flex-direction: column;
+        gap: 0;
+    }
+
     &__item {
         color: $text-black;
         display: flex;
         justify-content: space-between;
         align-items: center;
+        width: 100%;
         border-bottom: 1px solid $darkgrey;
         padding: 20px 0;
     }
@@ -680,9 +690,8 @@
 }
 
 .files-list {
-    display: flex;
-    align-items: center;
     gap: 30px;
+    width: 100%;
     flex-wrap: wrap;
     .files-item {
         flex-grow: 0;
@@ -692,13 +701,16 @@
         background: $white;
         box-shadow: 0px 4px 10px 0px rgba(204, 204, 204, 0.50);
         padding: 40px 10px;
+        height: 263px;
 
         @include media-breakpoint-down(lg) {
             flex-basis: calc(50% - 15px);
             padding: 20px 10px;
         }
         @include media-breakpoint-down(md) {
-            flex-basis: 100%;
+            flex: none;
+            width: 100%;
+            height: fit-content;
         }
 
         .file-name {
@@ -713,6 +725,21 @@
             overflow: hidden;
             text-align: center;
             text-overflow: ellipsis;
+            
+            @include media-breakpoint-down(md) {
+                font-size: 16px;
+                line-height: 18px;
+                height: 36px;
+            }
+        }
+
+        img {
+            margin-bottom: 40px;
+            
+            @include media-breakpoint-down(md) {
+                margin-bottom: 10px;
+                width: 48px;
+            }
         }
     }
     .add-file {
@@ -728,5 +755,174 @@
             color: $darkruby;
             border-color: $darkruby;
         }
+
+        @include media-breakpoint-down(md) {
+            height: 145px;
+        }
     }
 }
+
+.schedule {
+    &-modal {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100%;
+        background-color: $lightgrey;
+        padding-top: 60px;
+        opacity: 0;
+        pointer-events: none;
+        transition: all $transition_04;
+
+        @include media-breakpoint-down(md) {
+            z-index: 200;
+            padding-top: 0;
+        }
+
+        &.active {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        .container {
+            height: 100%;
+        }
+    }
+    &-wrapper {
+        background-color: $white;
+        border-radius: 45px 45px 0px 0px;
+        width: 100%;
+        height: 100%;
+        padding: 48px 40px 0 40px;
+
+        @include media-breakpoint-down(md) {
+            background-color: $lightgrey;
+            border-radius: 0;
+            padding: 24px 0 0;
+        }
+    }
+    &-top {
+        width: 100%;
+        font-size: 32px;
+        font-weight: 600;
+        line-height: 32px;
+        padding-bottom: 48px;
+        border-bottom: 1px solid $grey;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        position: relative;
+
+        @include media-breakpoint-down(md) {
+            justify-content: center;
+            font-size: 16px;
+            font-weight: 600;
+            line-height: 19.2px;
+            padding-bottom: 22px;
+
+            .schedule-close {
+                position: absolute;
+                top: 0;
+                right: 0;
+            }
+        }
+    }
+    &-body {
+        padding-top: 20px;
+        @include media-breakpoint-down(md) {
+            padding-top: 40px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        @include media-breakpoint-down(sm) {
+            flex-direction: column;
+            gap: 11px;
+        }
+    }
+    &-head {
+        font-weight: 600;
+        @include media-breakpoint-down(md) {
+            &.schedule-row {
+                display: none;
+            }
+        }
+    }
+    &-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 20px 40px;
+
+        @include media-breakpoint-down(md) {
+            border-radius: 5px;
+            background: $white;
+            box-shadow: 0px 4px 10px 0px rgba(204, 204, 204, 0.50);
+            flex-direction: column;
+            padding: 20px;
+            gap: 11px;
+            align-items: flex-start;
+            flex-basis: calc(50% - 10px);
+
+            .date {
+                color: $ruby;
+                font-size: 20px;
+                font-style: normal;
+                font-weight: 600;
+                line-height: 24px;
+            }
+        }
+        @include media-breakpoint-down(sm) {
+            flex-basis: 100%;
+        }
+
+        &__item {
+            flex-basis: 30%;
+            @include media-breakpoint-down(lg) {
+                flex-basis: 29%;
+            }
+            @include media-breakpoint-down(md) {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                width: 100%;
+                font-weight: 600;
+
+            }
+            &:last-child {
+                flex-basis: 10%;
+                white-space: nowrap;
+                @include media-breakpoint-down(lg) {
+                    flex-basis: 13%;
+                }
+            }
+        }
+        &:nth-child(even) {
+            background-color: $lightgrey;
+
+            @include media-breakpoint-down(md) {
+                background-color: $white;
+            }
+        }
+        &__name {
+            display: none;
+
+            @include media-breakpoint-down(md) {
+                display: block;
+                font-size: 14px;
+                color: $grey;
+                font-weight: 400 !important;
+            }
+        }
+        &__data {
+            flex-basis: 35%;
+
+        }
+        .pay-sum.paid {
+            color: $green;
+        }
+    }
+}
+
