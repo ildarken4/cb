@@ -114,4 +114,24 @@
     &-add-card {
         max-width: 400px;
     }
+
+    &-dashed {
+        border-radius: 10px;
+        border: 1px dashed $darkgrey;
+        opacity: 0.6;
+        background: $lightgrey;
+        color: $text-black;
+        text-transform: none;
+        font-family: 'Inter';
+        display: flex;
+        align-items: center;
+
+        img {
+            margin-left: -7px;
+        }
+        
+        &:hover {
+            opacity: 1;
+        }
+    }
 }
