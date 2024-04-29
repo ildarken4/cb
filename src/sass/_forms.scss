@@ -321,9 +321,9 @@ input.error {
 
   &__head {
     padding: 20px 40px;
-    font-size: 24px;
+    font-size: 20px;
     font-weight: 500;
-    line-height: 28.8px;
+    line-height: 20px;
     background-color: $lightgrey;
     border-radius: 10px;
     display: flex;
@@ -498,4 +498,10 @@ input[type="file"] {
 .file-name {
   max-width: 100%;
   overflow: hidden;
+}
+
+.form-item {
+  &__label {
+    margin-bottom: 5px;
+  }
 }

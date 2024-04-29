@@ -92,6 +92,16 @@
             color: $ruby;
         }
     }
+    &-green {
+        border: 2px solid $green;
+        color: $green;
+        background-color: transparent;
+
+        &:hover {
+            border-color: $text-black;
+            color: $text-black;
+        }
+    }
     &.bg-lightgrey {
         background-color: $lightgrey;
         color: $text-black;

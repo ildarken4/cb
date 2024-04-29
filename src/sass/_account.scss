@@ -88,20 +88,22 @@
     }
 }
 .account-body {
-    
-    @include media-breakpoint-down(lg) {
-        .col-lg-6 {
+    .row {
+        gap: 20px;
+        &>div {
+            width: calc(50% - 10px);
             padding: 0;
         }
+    }
+
+    @include media-breakpoint-down(lg) {
         .row {
-            flex-direction: row;
-            flex-wrap: nowrap;
+            &>div {
+                width: 100%;
+            }
         }
     }
     @include media-breakpoint-down(md) {
-        .col-lg-6 {
-            padding: 0 !important;
-        }
         .row {
             flex-wrap: wrap;
         }
@@ -110,6 +112,7 @@
         }
     }
     &__card {
+        position: relative;
         background-color: $white;
         padding: 40px 60px;
         border-radius: 10px;
@@ -117,7 +120,6 @@
         min-height: 390px;
 
         @include media-breakpoint-down(lg) {
-            margin-bottom: 20px;
             padding: 30px 10px;
         }
         @include media-breakpoint-down(md) {
@@ -153,6 +155,64 @@
                 }
             }
         }
+        &.overdue {
+            padding-top: 50px;
+            border: 2px solid $bg-red;
+        }
+        .overdue-alert {
+            position: absolute;
+            top: 0;
+            border-radius: 0px 0px 5px 5px;
+            background: $bg-red;
+            color: $white;
+            padding: 10px 15px;
+            font-weight: 600;
+        }
+        .get-loan-form {
+            max-width: 100%;
+            width: 100%;
+            
+            .form-row {
+                width: 100%;
+                align-items: center;
+                justify-content: space-between;
+                padding-bottom: 20px;
+                border-bottom: 1px solid $grey;
+
+                &:not(:first-child) {
+                    padding-top: 20px;
+                }
+                .form-text {
+                    width: 100%;
+                }
+
+                @media (max-width: 1180px) {
+                    flex-direction: column;
+                    align-items: center;
+
+
+                    .form-text {
+                        text-align: center;
+                        margin-bottom: 20px;
+                    }
+
+                    .custom-select {
+                        max-width: 100%;
+
+                    }
+                    .btn-rounded {
+                        max-width: 100%;
+                    }
+                }
+            }
+        }
+        .custom-select {
+            max-width: 300px;
+        }
+        .btn-rounded {
+            font-family: 'Inter', serif;
+            max-width: 300px;
+        }
     }
     .calculator {
         padding: 0;
@@ -186,6 +246,44 @@
             font-size: 12px;
         }
     }
+    &__link {
+        font-family: 'Inter';
+        margin-right: auto;
+        margin-left: auto;
+        width: fit-content;
+        font-size: 24px;
+        font-style: normal;
+        font-weight: 600;
+        transition: all $transition_04;
+        cursor: pointer;
+    
+        @include media-breakpoint-down(lg) {
+            font-size: 18px;
+            display: flex;
+            align-items: flex-end;
+            gap: 5px;
+        }
+    
+        svg {
+            transition: all $transition_04;
+    
+            path {
+                transition: all $transition_04;
+            }
+        }
+    
+        &:hover {
+            color: $darkruby;
+    
+            svg {
+                transform: rotate(45deg);
+    
+                path {
+                    stroke: $darkruby;
+                }
+            }
+        }
+    }
 }
 
 .payment-form {
@@ -198,45 +296,89 @@
         align-items: center;
         max-width: 280px;
     }
-    .account-body__link {
-        font-family: 'Inter';
-        font-size: 24px;
-        font-style: normal;
-        font-weight: 600;
-        transition: all $transition_04;
-        cursor: pointer;
-
-        @include media-breakpoint-down(lg) {
-            font-size: 18px;
-            display: flex;
-            align-items: flex-end;
-            gap: 5px;
-        }
-
-        svg {
-            transition: all $transition_04;
-
-            path {
-                transition: all $transition_04;
-            }
-        }
-        &:hover {
-            color: $darkruby;
-            svg {
-                transform: rotate(45deg);
-                path {
-                    stroke: $darkruby;
-                }
-            }
-        }
-    }
 }
 
 .account-menu {
+    height: 100%;
+    overflow-y: scroll;
+    padding-bottom: 150px;
+
+    &-btn {
+        width: 200px;
+        height: 84px;
+        min-height: 84px;
+        margin-left: auto;
+        margin-right: auto;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 24px;
+        line-height: 24px;
+        text-transform: uppercase;
+        color: $white;
+        border-radius: 10px;
+        border: 2px solid $white;
+        background: $darkgrey;
+        box-shadow: 0px 4px 4px 0px rgba(204, 204, 204, 0.25);
+        backdrop-filter: blur(5px);
+        transition: all $transition_04;
+        cursor: pointer;
+
+        &.account-menu-close {
+            background: rgba(21, 21, 21, 0.80);
+            @include media-breakpoint-down(md) {
+                position: absolute;
+                bottom: 5vh;
+                width: calc(100% - 40px);
+                height: 60px;
+                min-height: 60px;
+                font-size: 16px;
+
+            }
+        }
+
+        img {
+            margin-left: 6px;
+        }
+
+        &:hover {
+            opacity: .8;
+        }
+    }
+
+    &-modal {
+        position: fixed;
+        top: 0;
+        left: 0;
+        transform: translateY(120vh);
+        width: 100vw;
+        height: 100vh;
+        padding: 150px 50px 60px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+        background: rgba(21, 21, 21, 0.90);
+        backdrop-filter: blur(15px);
+        z-index: 300;
+        transition: all 0.4s ease-in-out;
+
+        &.active {
+            transform: translateY(0);
+        }
+
+        @include media-breakpoint-down(lg) {
+            padding-top: 80px;
+        }
+
+        @include media-breakpoint-down(md) {
+            padding: 40px 8px 0;
+        }
+    }
+
     &__item {
         display: flex;
-        align-items: flex-end;
-        justify-content: space-between;
+        align-items: center;
         width: 100%;
         min-height: 100px;
         background-color: $white;
@@ -245,56 +387,56 @@
         font-family: 'Inter';
         font-size: 24px;
         font-weight: 600;
-        padding: 8px 0 8px 15px;
+        padding: 10px;
         cursor: pointer;
-        box-shadow: 0px 4px 10px 0px rgba(204, 204, 204, 0.50);
         transition: all $transition_04;
-        @include media-breakpoint-down(lg) {
-            margin-bottom: 20px;
-        }
+        margin-bottom: 20px;
         @include media-breakpoint-down(md) {
-            position: relative;
-            flex-direction: column;
-            padding: 15px 5px 5px 15px;
-            height: 132px;
+            height: 70px;
+            min-height: 70px;
+            margin-bottom: 10px;
         }
         &:hover {
             color: $ruby;
-            svg {
-                transform: translateX(3px);
-                path {
-                    fill: $ruby;
-                }
-            }
+        }
+        &.not-selected {
+            filter: brightness(.8);
         }
     }
     &__title {
-        transition: all $transition_04;
         padding-bottom: 5px;
-        svg {
-            transition: all $transition_04;
-            path {
-                transition: all $transition_04;
-            }
+        
+        @media (max-width:1180px) {
+            font-size: 18px;
+            line-height: 22px;
         }
+
         @include media-breakpoint-down(md) {
-            align-self: flex-start;
             font-size: 18px;
             line-height: 18px;
 
-            svg {
-                display: none;
-            }
         }
     }
     &__pic {
-        align-self: center;
+        padding: 10px;
+        border-radius: 5px;
+        background: $grey_015;
+        margin-right: 20px;
+        flex: none;
+        width: 30%;
+
+        img {
+            width: 100%;
+        }
 
         @include media-breakpoint-down(md) {
-            align-self: flex-end;
-            position: absolute;
-            bottom: 0;
-            right: 0;
+            width: auto;
+            height: 100%;
+
+            img {
+                width: auto;
+                height: 100%;
+            }
         }
     }
 }
@@ -564,6 +706,10 @@
     }
 }
 
+.loans-slider {
+    overflow: hidden;
+}
+
 .account-docs {
     width: 100%;
     max-width: 1200px;
@@ -684,6 +830,7 @@
         opacity: 0;
         pointer-events: none;
         transition: all $transition_04;
+        z-index: 150;
 
         @include media-breakpoint-down(md) {
             z-index: 200;
@@ -836,3 +983,436 @@
     }
 }
 
+.account-banner {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px 0px rgba(204, 204, 204, 0.50);
+    padding: 20px;
+    background-color: $white;
+    background-image: url(../images/backgrounds/banner-background.svg);
+    background-position: center;
+    background-size: 35%;
+    overflow: hidden;
+
+    @include media-breakpoint-down(md) {
+        background-position: top;
+    }
+    
+    &__text {
+        position: relative;
+        z-index: 2;
+        text-align: center;
+        font-size: 36px;
+        font-weight: 700;
+        line-height: 36px;
+        margin-bottom: 30px;
+        @include media-breakpoint-down(md) {
+            font-size: 24px;
+            line-height: 24px;
+            margin-bottom: 20px;
+
+        }
+    }
+    &__btn {
+        position: relative;
+        z-index: 2;
+        font-family:'Inter', serif;
+        max-width: 353px;
+        margin-left: auto;
+        margin-right: auto;
+        background-color: $white;
+    }
+    &__bg {
+        position: absolute;
+        flex: none;
+        width: 40%;
+        height: 100%;
+        top:0;
+        left: calc(30%);
+        right: auto;
+        background-color: $white;
+        -webkit-box-shadow: 0px 0px 74px 58px rgba(255, 255, 255, 1);
+        -moz-box-shadow: 0px 0px 74px 58px rgba(255, 255, 255, 1);
+        box-shadow: 0px 0px 74px 58px rgba(255, 255, 255, 1);
+        z-index: 0;
+
+        @include media-breakpoint-down(md) {
+            width: 100%;
+            height: 100%;
+            top: 50px;
+            left: 0;
+            -webkit-box-shadow: none;
+            -moz-box-shadow: none;
+            box-shadow: none;
+        }
+    }
+}
+.loan-number {
+    font-size: 24px;
+    font-weight: 600;
+    text-align: center;
+    color: $grey;
+    margin-bottom: 30px;
+    @include media-breakpoint-down(md) {
+        font-size: 14px;
+        margin-bottom: 20px;
+    }
+
+    &__data {
+        margin-top: 10px;
+        font-weight: 700;
+        color: $text-black;
+
+        @include media-breakpoint-down(md) {
+            margin-top: 5px;
+        }
+    }
+}
+.loan-details {
+    width: 100%;
+    &__body {
+        height: fit-content;
+        max-height: 0;
+        overflow: hidden;
+        transition: all $transition_04;
+
+        &.active {
+            max-height: 500px;
+        }
+    }
+    &__item {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 20px;
+        @include media-breakpoint-down(md) {
+            margin-bottom: 10px;
+        }
+    }
+    &__name {
+        color: $grey;
+        font-size: 20px;
+        max-width: 50%;
+
+        @include media-breakpoint-down(md) {
+            font-size: 14px;
+        }
+    }
+    &__data {
+        font-size: 24px;
+        font-weight: 700;
+        line-height: 28px;
+
+        @include media-breakpoint-down(md) {
+            font-size: 16px;
+        }
+    }
+    &__btn {
+        color: $grey;
+        padding-top: 15px;
+        width: 100%;
+        text-align: center;
+        text-decoration: underline;
+        border-top: 1px dashed $grey;
+        transition: all $transition_04;
+        cursor: pointer;
+
+        @include media-breakpoint-down(md) {
+            font-size: 14px;
+        }
+        &:hover {
+            color: $text-black;
+        }
+    }
+}
+
+.account-updating {
+    width: 100%;
+    max-width: 735px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 40px;
+
+    .form-item {
+        margin-bottom: 20px;
+    }
+
+    .form-row {
+        width: 100%;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-align: start;
+        -ms-flex-align: start;
+        align-items: flex-start;
+        -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+        justify-content: space-between;
+        gap: 30px;
+        margin-bottom: 20px;
+        @include media-breakpoint-down(md) {
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .form-item {
+            width: calc(50% - 15px);
+            margin-bottom: 0;
+            @include media-breakpoint-down(md) {
+                width: 100%;
+            }
+        }
+    }
+    
+    .custom-select__head {
+        width: 100%;
+        height: 60px;
+        padding: 16px;
+        border-radius: 5px;
+        font-size: 14px;
+        font-family: "Inter", serif;
+        background-color: rgb(245, 245, 245);
+        color: #A3A3A3;
+    }
+}
+.updating-block {
+    width: 100%;
+    margin-bottom: 30px;
+
+    &__head {
+        width: 100%;
+        background-color: $lightgrey;
+        padding: 15px 20px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 10px;
+        @include media-breakpoint-down(md) {
+            padding: 9px 10px;
+        }
+
+        .change-btn {
+            display: flex;
+            align-items: center;
+            font-size: 20px;
+            transition: all $transition_04;
+            cursor: pointer;
+            
+            svg {
+                margin-left: 10px;
+
+                path {
+                    transition: all $transition_04;
+                }
+            }
+
+            &:hover {
+                color: $ruby;
+
+                svg path {
+                    stroke: $ruby;
+                }
+            }
+        }
+    }
+
+    &__name {
+        font-size: 24px;
+        font-weight: 700;
+        @include media-breakpoint-down(md) {
+            font-size: 18px;
+            font-weight: 500;
+        }
+    }
+
+    &__body {
+        padding-left: 20px;
+        border-left: 1px dashed $grey;
+        @include media-breakpoint-down(md) {
+            padding-left: 10px;
+        }
+    }
+
+    &__item {
+        margin-bottom: 10px;
+        font-size: 20px;
+        @include media-breakpoint-down(md) {
+            font-size: 14px;
+        }
+    }
+}
+
+.updating-confirm {
+    width: 100%;
+    padding: 20px 0;
+    border-top: 1px solid $text-black;
+    border-bottom: 1px solid $text-black;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+
+    @include media-breakpoint-down(md) {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    &__text {
+        font-size: 14px;
+        line-height: 16px;
+        max-width: 350px;
+
+        @include media-breakpoint-down(md) {
+            margin-bottom: 20px;
+            text-align: center;
+        }
+    }
+
+    &__title {
+        font-size: 20px;
+        line-height: 24px;
+        font-weight: 600;
+        margin-bottom: 5px;
+        text-transform: uppercase;
+
+        @include media-breakpoint-down(md) {
+            font-size: 18px;
+            line-height: 20px;
+            text-transform: none;
+        }
+    }
+    .btn {
+        max-width: 353px;
+        height: 62px;
+        font-size: 16px;
+
+        @include media-breakpoint-down(md) {
+            height: 50px;
+        }
+    }
+}
+
+.update-photos-form {
+    width: 100%;
+    max-width: 1116px;
+    margin-left: auto;
+    margin-right: auto;
+
+    .form-row {
+        max-width: 730px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    p {
+        width: 100%;
+        max-width: 561px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    &>.btn {
+        max-width: 353px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+
+.update-photos {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 30px;
+
+    @include media-breakpoint-down(lg) {
+        flex-direction: column;
+    }
+
+    &__top {
+        width: 100%;
+    }
+
+    &__item {
+        padding: 10px 10px 40px;
+        width: 100%;
+        max-width: 353px;
+        border-radius: 10px;
+        border: 2px solid $lightgrey;
+        background: $lightgrey;
+        box-shadow: 0px 4px 10px 0px rgba(204, 204, 204, 0.50);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+        min-height: 456px;
+
+        @include media-breakpoint-down(lg) {
+            max-width: 100%;
+            background: $white;
+            border: none;
+            border-bottom: 1px solid $text-black;
+            box-shadow: none;
+            border-radius: 0;
+        }
+    }
+    &__image {
+        background-color: $white;
+        border-radius: 10px;
+        width: 100%;
+        height: 252px;
+        margin-bottom: 10px;
+        
+        @include media-breakpoint-down(lg) {
+            background-color: $lightgrey;
+            border: 1px solid $grey;
+        }
+
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+    }
+    &__description {
+        text-align: center;
+    }
+    .btn {
+        height: 62px;
+        font-size: 16px;
+        max-width: 300px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+
+.account-flow {
+    width: 100%;
+    max-width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+
+    &__text {
+        width: 100%;
+        text-align: center;
+        font-size: 20px;
+
+        @include media-breakpoint-down(md) {
+            font-size: 14px;
+        }
+    }
+    .resend {
+        font-size: 20px;
+        color: $ruby;
+        text-decoration: underline;
+        font-weight: 600;
+        text-align: center;
+    }
+    .popup-timer {
+        width: 100%;
+        color: $grey;
+        text-align: center;
+    }
+}

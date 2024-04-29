@@ -39,7 +39,7 @@
                                 <div class="form-item">
                                     <div class="form-item__label">Имя<span class="text-ruby">*</span></div>
                                     <div class="form-input">
-                                        <input type="text" id="contact-name" placeholder="Введите имя">
+                                        <input type="text" id="contact-name" placeholder="Введите имя" required>
                                     </div>
                                     <div class="input-error">Обязательное поле</div>
                                 </div>
@@ -47,7 +47,7 @@
                                 <div class="form-item">
                                     <div class="form-item__label">Фамилия<span class="text-ruby">*</span></div>
                                     <div class="form-input">
-                                        <input type="text" id="contact-surname" placeholder="Введите имя">
+                                        <input type="text" id="contact-surname" placeholder="Введите фамилию" required>
                                     </div>
                                     <div class="input-error">Обязательное поле</div>
                                 </div>
@@ -56,7 +56,7 @@
                                 <div class="form-item">
                                     <div class="form-item__label">Отчество<span class="text-ruby">*</span></div>
                                     <div class="form-input">
-                                        <input type="text" id="contact-pathronypic" placeholder="Введите отчество">
+                                        <input type="text" id="contact-pathronypic" placeholder="Введите отчество" required>
                                     </div>
                                     <div class="input-error">Обязательное поле</div>
                                 </div>
@@ -94,7 +94,7 @@
                                 <div class="form-item">
                                     <div class="form-item__label">Дата рождения<span class="text-ruby">*</span></div>
                                     <div class="form-input">
-                                        <input type="date" id="contact-pathronypic" placeholder="ДД.ММ.ГГ">
+                                        <input type="date" id="contact-pathronypic" placeholder="ДД.ММ.ГГ" required>
                                     </div>
                                     <div class="input-error">Обязательное поле</div>
                                 </div>
@@ -124,7 +124,7 @@
                                 Почта подтверждена
                             </div>
 
-                            <a href="flow-passport.html" class="btn"> <span class="for-desktop">Перейти&nbsp;</span> к следующему шагу</a>
+                            <a href="flow-passport.html" class="btn js-form-btn"> <span class="for-desktop">Перейти&nbsp;</span> к следующему шагу</a>
 
                         </form>
                     </div>
@@ -202,6 +202,11 @@
     
             </div>
         </div>
+    </div>
+
+    <div class="notification error">
+        <span>Не все поля заполнены</span>
+        <img src="images/buttons/account-menu-close.svg" alt="ошибка">
     </div>
 
     <partial src="main-footer.html"></partial>
