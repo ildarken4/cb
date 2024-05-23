@@ -10,6 +10,17 @@
 <partial src="header.html"></partial>
 <div class="wrapper">
   <section class="hero">
+    <a href="appeal.html" class="appeal-link">
+        <div class="appeal-link__wrapper for-desktop">
+            <div class="appeal-link__image">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                    <path d="M10 3.2233C10.6432 3.07735 11.3126 3.00029 12 3.00029C16.9706 3.00029 21 7.02972 21 12.0003C21 12.6933 20.9217 13.3681 20.7734 14.0161C20.6301 14.6421 20.6103 15.2943 20.7581 15.9192C21.0884 17.3148 21.3545 19.241 20.9801 20.5588C20.8224 21.1141 20.1354 21.1685 19.6239 20.9008C19.0289 20.5895 18.2964 20.3187 17.6456 20.114C16.9167 19.8848 16.1402 20.0302 15.434 20.322C14.3758 20.7591 13.2161 21.0003 12 21.0003C7.02944 21.0003 3 16.9709 3 12.0003C3 11.1328 3.12273 10.294 3.35177 9.50029M10.5 16.0003L10.5 8.00029M14.5 16.0003L14.5 12.0003M2 4.00029L4 4.00029M4 4.00029L6 4.00029M4 4.00029L4 6.00029M4 4.00029L4 2.00029" stroke="#CD2759" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </div>
+            <div class="appeal-link__text">Подать обращение</div>
+        </div>
+    </a>
+    
     <div class="container">
         <div class="row">
             <h1 class="text-darkruby uppercase">
@@ -73,7 +84,7 @@
                     <div class="calculator__phone mb-40">
                         <div class="text-500 text-24 mb-15 mb-md-5">Ваш номер телефона:</div>
                         <div class="form-input calculator-input">
-                            <input type="tel" id="calculator-phone" class="error" placeholder="Введите ваш номер">
+                            <input type="tel" id="calculator-phone" placeholder="Введите ваш номер" required>
                         </div>
                         <div class="input-error">Ошибка</div>
                     </div>
@@ -82,7 +93,7 @@
 
                     <div class="d-flex mb-16">
                         <label for="rules" class="">
-                            <input type="checkbox" id="rules">
+                            <input type="checkbox" id="rules" required>
                             <span class="custom-checkbox"></span>
                             <span>Я ознакомлен и согласен со&nbsp;<a class="show-rules text-ruby underlined">следующим</a> </span>
                         </label>
@@ -109,6 +120,7 @@
     </div>
   </section>
 
+  <a name="learn"></a>
   <section class="learn pt-60 pt-md-0 pb-60 pb-md-25">
     <div class="container tabs">
         <ul class="nav nav-tabs" id="learn-tab">
@@ -159,6 +171,7 @@
     </div>
   </section>
 
+  <a name="about"></a>
   <section class="pt-75 pb-75">
     <div class="container">
         <div class="row">
@@ -180,6 +193,7 @@
     </div>
   </section>
 
+  <a name="faq"></a>
   <section class="contacts pb-150">
     <div class="container">
         <h2 class="mb-20 text-center">Остались вопросы?</h2>

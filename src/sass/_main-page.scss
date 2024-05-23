@@ -555,3 +555,61 @@
     display: none;
   }
 }
+
+.appeal-link {
+  position: fixed;
+  height: 50px;
+  width: 50px;
+  top: 50vh;
+  left: -70px;
+  transform: rotate(-90deg);
+  transition: all $transition_04;
+  animation: slideFromLeft .7s 2s;
+  animation-fill-mode: forwards;
+  z-index: 150;
+
+  &__wrapper {
+    width: 218px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 15px 10px 5px 5px;
+    border-radius: 0px 0px 10px 10px;
+    background-color: $ruby;
+  }
+  
+  &__text {
+    color: $white;
+    font-size: 16px;
+    white-space: nowrap;
+  }
+  &__image {
+    width: 40px;
+    height: 40px;
+    background-color: $white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    margin-right: 10px;
+    svg {
+      transform: rotate(90deg);
+    }
+  }
+
+  &:hover {
+    opacity: .9;
+  }
+}
+
+@keyframes slideFromLeft {
+  0% {
+    left: -70px;
+  }
+  50% {
+    left: 0;
+  }
+  100% {
+    left: -10px;
+  }
+}
