@@ -14,16 +14,16 @@
         <div class="container pt-60 pt-md-40">
 
             <div class="account-content mb-60">
-                <h1 class="mb-40 mb-md-20">Изменение паспортных данных</h1>
+                <h1 class="mb-40 mb-md-20">Ваша заявка рассматривается</h1>
 
-                <div class="flow-wrapper">
-                    <form action="" class="update-photos-form">
-
-                    <p class="text-center text-20 mb-40">Некоторые файлы не прошли проверку. Пожалуйста, загрузите их еще раз. Сделайте фото согласно примеру. Убедитесь, что данные на фото легко считываются.</p>
-
+               <div class="flow-info flow-wrapper">
+                    <div class="flow-info__img">
+                        <img src="images/icons/clock-3d.png" width="100%" alt="часы">
+                    </div>
+                    <p class="flow-info__text text-grey">Файл не прошел проверку.</p>
+                    <p class="flow-info__text text-ruby mb-40">Загрузите новый.</p>
                     
-                    
-                        <div class="flow-photos mb-40 flex-wrap ">
+                    <div class="flow-photos mb-40 flex-wrap ">
                             <div class="flow-photos__item">
                                 <div class="flow-photos__pic uploaded-pic">
                                     <img src="images/passport-selfie.png" alt="селфи с паспортом">
@@ -111,25 +111,13 @@
                         </div>
                         
                         <div class="btn mb-20" onclick="openModal('upload-selfie')">Заменить</div>
-                    
-                    <a href="account-updating.html" class="btn js-form-btn">Сохранить</a>
 
-                </form>
                 </div>
                 
-                
 
             </div>
-
-
-            <div class="notification error">
-                <span>Не все поля заполнены</span>
-                <img src="images/buttons/account-menu-close.svg" alt="ошибка">
-            </div>
-
         </div>
     </div>
-
 
     <div class="modal uploads-modal" id="upload-selfie">
         <div class="uploads-modal__controls mb-40">
